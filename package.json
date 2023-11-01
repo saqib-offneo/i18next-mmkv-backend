@@ -1,15 +1,15 @@
 {
-  "name": "i18next-async-storage-backend",
+  "name": "i18next-mmkv-backend",
   "version": "1.0.2",
-  "description": "caching layer backend for i18next using react native async storage",
+  "description": "caching layer backend for i18next using mmkv storage",
   "main": "./index.js",
   "jsnext:main": "dist/es/index.js",
   "keywords": [
     "i18next",
     "i18next-backend"
   ],
-  "homepage": "https://github.com/timbrandin/i18next-async-storage-backend",
-  "bugs": "https://github.com/timbrandin/i18next-async-storage-backend/issues",
+  "homepage": "https://github.com/saqib-offneo/i18next-mmkv-backend",
+  "bugs": "https://github.com/saqib-offneo/i18next-mmkv-backend/issues",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.23.0",
@@ -30,11 +30,11 @@
     "yargs": "6.6.0"
   },
   "peerDependencies": {
-    "@react-native-community/async-storage": "*"
+    "react-native-mmkv": "*"
   },
   "scripts": {
     "clean": "rimraf dist && mkdirp dist",
-    "copy": "cp ./dist/umd/i18nextAsyncStorageBackend.min.js ./i18nextAsyncStorageBackend.min.js && cp ./dist/umd/i18nextAsyncStorageBackend.js ./i18nextAsyncStorageBackend.js",
+    "copy": "cp ./dist/umd/i18nextMmkvBackend.min.js ./i18nextMmkvBackend.min.js && cp ./dist/umd/i18nextMmkvBackend.js ./i18nextMmkvBackend.js",
     "build:es": "BABEL_ENV=jsnext babel src --out-dir dist/es",
     "build:cjs": "babel src --out-dir dist/commonjs",
     "build:umd": "rollup -c rollup.config.js --format umd && rollup -c rollup.config.js --format umd --uglify",
@@ -45,8 +45,7 @@
     "postversion": "git push && git push --tags"
   },
   "author": [
-    "Jan Mühlemann <jan.muehlemann@gmail.com> (https://github.com/jamuhl)",
-    "Tim Brandin <tim.brandin@gmail.com> (https://github.com/timbrandin)"
+    "Saqib Majeed <saqib.majeed@offneo.com>"
   ],
   "license": "MIT"
 }

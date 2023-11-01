@@ -13,9 +13,9 @@ const babelOptions = {
 };
 
 const dest = {
-  amd: `dist/amd/i18nextAsyncStorageBackend${compress ? '.min' : ''}.js`,
-  umd: `dist/umd/i18nextAsyncStorageBackend${compress ? '.min' : ''}.js`,
-  iife: `dist/iife/i18nextAsyncStorageBackend${compress ? '.min' : ''}.js`
+  amd: `dist/amd/i18nextMmkvBackend${compress ? '.min' : ''}.js`,
+  umd: `dist/umd/i18nextMmkvBackend${compress ? '.min' : ''}.js`,
+  iife: `dist/iife/i18nextMmkvBackend${compress ? '.min' : ''}.js`
 }[format];
 
 export default {
@@ -25,7 +25,6 @@ export default {
     babel(babelOptions),
     nodeResolve({ jsnext: true })
   ].concat(compress ? uglify() : []),
-  moduleName: 'i18nextAsyncStorageBackend',
-  // moduleId: 'i18nextAsyncStorageCache',
+  moduleName: 'i18nextMmkvBackend',
   dest
 };

@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global.i18nextAsyncStorageBackend = factory());
+	(global.i18nextMmkvBackend = factory());
 }(this, (function () { 'use strict';
 
 var arr = [];
@@ -24,17 +24,20 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // get from whatever version of react native that is being used.
-var AsyncStorage = require('@react-native-community/async-storage') || {};
+var MMKV = require('react-native-mmkv') || {};
+var mmkvObj = new MMKV();
 
 var storage = {
   setItem: function setItem(key, value) {
-    if (AsyncStorage) {
-      return AsyncStorage.setItem(key, value);
+    if (MMKV) {
+      mmkvObj.set(key, value);
+      return Promise.resolve(true);
     }
   },
   getItem: function getItem(key, value) {
-    if (AsyncStorage) {
-      return AsyncStorage.getItem(key, value);
+    if (MMKV) {
+      var _value = mmkvObj.getString(key);
+      return Promise.resolve(_value);
     }
     return undefined;
   }
@@ -75,7 +78,7 @@ var Cache = function () {
       var store = {};
       var nowMS = new Date().getTime();
 
-      if (!AsyncStorage) {
+      if (!MMKV) {
         return callback(null, null);
       }
 
@@ -103,7 +106,7 @@ var Cache = function () {
   }, {
     key: 'save',
     value: function save(language, namespace, data) {
-      if (AsyncStorage) {
+      if (MMKV) {
         data.i18nStamp = new Date().getTime();
 
         // language version (if set)
